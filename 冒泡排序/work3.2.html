@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>递归函数的冒泡</title>
+    
+    
+<script>
+    var elements = [10,5,1,3,2,13,30,4,4.2,14,5.6];
+    function maopao(elements){
+
+        console.log("元素"+elements);//用于记录每次递归的变化
+
+        console.log("长度"+elements.length);
+
+        if(elements.length<=1){
+            return elements;//将递归中出现单个元素的分支输出
+        }
+        var frist = Math.floor(elements.length/2);//每次递归都将数组长度除二，选择最接近长度二分之一的数，其实除以多大的数都无所谓，只要大于一
+        var control = elements.splice(frist,1);//获取删除的数字，每次递归都将小于他或大于的数字push进相应的分支中,并且用于控制深入的次数。
+        var arrLeft = [];//左分支
+        var arrRight = [];//右分支
+        //遍历数组
+        for(var i = 0;i<elements.length;i++){
+            if(elements[i] < control){
+                arrLeft.push(elements[i]);
+                console.log("arrLeft="+arrLeft);
+            }else{
+                arrRight.push(elements[i]);
+                console.log("arrright="+arrRight)
+            }
+        }
+        return  maopao(arrLeft).concat(control,maopao(arrRight));//先进行左分支深入递归，然后右分支深入递归。最后输出结果
+    }
+    console.log(maopao(elements));
+    
+</script>
+
+
+
+</head>
+<body>
+  
+</body>
+</html>
